@@ -1,0 +1,10 @@
+Creating Basic Blocks in IDA
+https://reverseengineering.stackexchange.com/questions/1646/how-to-map-an-arbitrary-address-to-its-corresponding-basic-block-in-ida
+
+https://reverseengineering.stackexchange.com/questions/14725/using-ida-python-iterate-through-all-functions-and-their-instructions
+
+Driller Source Code: https://github.com/shellphish/driller
+
+Enabling linear sweep in binja: 
+bv.add_analysis_option("linearsweep")
+bv.update_analysis_and_wait()

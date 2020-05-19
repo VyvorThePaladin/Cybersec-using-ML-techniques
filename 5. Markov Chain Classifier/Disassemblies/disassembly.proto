@@ -1,0 +1,86 @@
+// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+package targaryen;
+// [END declaration]
+
+
+// [START messages]
+
+message DisassemblyBinary {
+
+  string binary_name = 1;
+
+  bytes binary_sha256_hash = 2;
+
+  repeated DisassemblyFunction disassembly_func_list = 3;
+
+  uint32 proc_type = 4; // (e.g. x86 vs ARM)
+
+  uint32 file_type = 5; // (e.g. ELF vs PE)
+
+  uint32 word_size =6;  // (e.g. 32-bit vs 64-bit)
+
+  uint32 endness = 7;  //(e.g. Big endina vs little endian)
+
+  uint32 segment_index = 8;
+
+  uint32 total_segments = 9;
+
+  repeated ImportSymbol import_symbol_list = 10;
+
+}
+
+message ImportSymbol {
+
+    string import_name=1;
+
+    string library_name=2;
+
+    uint64 address=3;
+}
+
+message DisassemblyFunction {
+
+  string name = 1; // Function name
+
+  uint64 start_address = 2;
+
+  uint64 end_address = 3;
+
+  string segment_name = 4;  // (e.g text, plt)
+
+  repeated DisassemblyBasicBlock disassembly_basicblock_list = 5;
+
+
+}
+
+message DisassemblyBasicBlock {
+
+  uint64 start_address = 1;
+
+  uint64 end_address = 2;
+
+  repeated DisassemblyInstruction disassembly_instruct_list = 3;
+
+}
+
+
+message DisassemblyInstruction {
+
+  uint64 address = 1;
+
+  bytes  opcode_bytes = 2;
+
+  string mnemonic = 3;
+
+}
+
+// [END messages]
