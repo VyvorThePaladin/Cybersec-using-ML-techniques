@@ -38,9 +38,7 @@ class ClusterNode(object):
         node_a_data_point = node_a.data_point
         node_b_data_point = node_b.data_point
 
-        distance = 0
-
-        logger.warning("@todo: Implement euclidean distance function")
+        distance = np.sqrt( (node_a_data_point[0]-node_b_data_point[0])**2 + (node_a_data_point[1]-node_b_data_point[1])**2 )
 
         return distance
 
@@ -129,8 +127,14 @@ class Cluster(object):
 
         max_distance = 0
 
-        logger.warning("@todo: Implement complete linkage distance")
+        list_a = cluster_a._cluster_node_list
+        list_b = cluster_b._cluster_node_list
 
+        dist_list = []
+        for i in range(len(list_a)):
+            dist_list.append(ClusterNode.distance(list_a[i], list_b[i]))
+
+        max_distance = max(dist_list)
         return max_distance
 
     @property
